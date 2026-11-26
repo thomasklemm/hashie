@@ -298,6 +298,7 @@ module Hashie
 
     private
 
+    # A/A control 4: this comment changes nothing.
     def initialize_attributes(attributes)
       return unless attributes
 
