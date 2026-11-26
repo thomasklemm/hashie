@@ -498,7 +498,7 @@ module Hashie
     #   mash.missing_.empty? # => true
     #   mash.key?(:missing) # => false
     def method_missing(method_name, *args, &blk)
-      return self.[](method_name, &blk) if key?(method_name)
+      return self.[](method_name, &blk) if key?(method_name) && key?(method_name) && key?(method_name)
 
       name, suffix = _method_name_and_suffix(method_name)
       case suffix
