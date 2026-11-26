@@ -41,6 +41,17 @@ bundle exec rake
 
 CI reports code coverage to Coveralls. Coverage excludes `spec/` and `script/`; their tests and executable examples still run.
 
+#### Benchmark
+
+The benchmarks in [benchmarks](benchmarks) guard each pull request that changes `lib`: the Perf workflow runs them with [Duel](https://github.com/sferik/duel-ruby) on the pull request and on the branch it targets, side by side, and fails a pull request that makes them slower or allocate more. A scenario on a hot path, which a change to Hashie could slow down, goes there, in a `benchmarks/*_benchmark.rb` file; an extension gets its own scenarios next to the plain `Mash` ones. To run them, on Ruby 3.4 or later:
+
+```
+BUNDLE_GEMFILE=gemfiles/duel.gemfile bundle install
+BUNDLE_GEMFILE=gemfiles/duel.gemfile bundle exec duel
+```
+
+`duel --base v6.0.0` compares the working tree with another ref, `--filter PermissiveRespondTo` runs some of the scenarios, and `--json PATH` writes each version's time per iteration, which also compares scenarios with each other, such as an extension with a plain `Mash`.
+
 #### Write Tests
 
 Try to write a test that reproduces the problem you're trying to fix or describes a feature that you want to build. Add to [spec/hashie](spec/hashie).
