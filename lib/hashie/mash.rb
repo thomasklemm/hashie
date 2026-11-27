@@ -602,7 +602,7 @@ module Hashie
     # Symbol#name returns the symbol's interned frozen string, where
     # Symbol#to_s allocates a new one on every read and write.
     def convert_key(key) # :nodoc:
-      return key.name if key.is_a?(Symbol)
+      return key.to_s if key.is_a?(Symbol)
 
       key.respond_to?(:to_sym) ? key.to_s : key
     end
