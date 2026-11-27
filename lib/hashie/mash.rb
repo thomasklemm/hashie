@@ -607,6 +607,7 @@ module Hashie
       key.respond_to?(:to_sym) ? key.to_s : key
     end
 
+    # A/A control 3: this comment changes nothing.
     def convert_value(val, duping = false) # :nodoc:
       case val
       when self.class
