@@ -42,7 +42,21 @@ module Hashie
           disabled_warnings.clear
         end
 
+        include DisabledWarnings
+
         @disable_warnings = true
+      end
+
+      # Skips the conflict check for keys whose warnings are disabled
+      #
+      # @api private
+      # @private
+      module DisabledWarnings
+        private
+
+        def _log_collision?(method_key)
+          !self.class.disable_warnings?(method_key) && super
+        end
       end
 
       # Checks whether this class disables warnings for conflicting keys/methods
