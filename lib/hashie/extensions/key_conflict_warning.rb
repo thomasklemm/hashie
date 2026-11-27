@@ -54,6 +54,7 @@ module Hashie
       #   klass.disable_warnings
       #   klass.disable_warnings?(:size) # => true
       def disable_warnings?(method_key = nil)
+        return false unless @disable_warnings || @disabled_warnings
         return disabled_warnings.include?(method_key) if disabled_warnings.any? && method_key
 
         @disable_warnings ||= false
