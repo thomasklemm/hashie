@@ -10,6 +10,10 @@ class PermissiveMash < Hashie::Mash
   include Hashie::Extensions::Mash::PermissiveRespondTo
 end
 
+class QuietMash < Hashie::Mash
+  disable_warnings
+end
+
 class IndifferentHash < Hash
   include Hashie::Extensions::MergeInitializer
   include Hashie::Extensions::IndifferentAccess
@@ -71,6 +75,11 @@ end
 duel 'PermissiveRespondTo: overwrite a key as a method' do
   once { @mash = PermissiveMash.new(a: 1) }
   @mash.a = 1
+end
+
+duel 'disable_warnings: Mash.new from a nested JSON response' do
+  once { @repository = repository }
+  QuietMash.new(@repository)
 end
 
 duel 'IndifferentAccess: new from a nested JSON response' do |n|
