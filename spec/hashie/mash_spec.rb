@@ -72,6 +72,12 @@ describe Hashie::Mash do
     expect(subject.abc('foobar')).to be_nil
     subject.abc = 123
     expect(subject.abc('foobar')).to eq 123
+    expect(subject.abc('foo', 'bar')).to eq 123
+  end
+
+  it 'sets the first argument when method= is sent several' do
+    subject.send(:abc=, 123, 456)
+    expect(subject.abc).to eq 123
   end
 
   # Added due to downstream gems assuming indifferent access to be true for Mash

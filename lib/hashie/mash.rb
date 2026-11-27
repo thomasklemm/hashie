@@ -497,13 +497,13 @@ module Hashie
     #   mash.user? # => true
     #   mash.missing_.empty? # => true
     #   mash.key?(:missing) # => false
-    def method_missing(method_name, *args, &blk)
+    def method_missing(method_name, value = nil, *, &blk)
       return self.[](method_name, &blk) if key?(method_name)
 
       name, suffix = _method_name_and_suffix(method_name)
       case suffix
       when '='
-        assign_property(name, args.first)
+        assign_property(name, value)
       when '?'
         !!self[name]
       when '!'

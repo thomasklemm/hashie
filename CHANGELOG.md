@@ -19,6 +19,7 @@ Any violations of this scheme are considered to be bugs.
 ### Changed
 
 * [#656](https://github.com/hashie/hashie/pull/656): Write new Mash keys without allocating in respond_to_missing? - [@thomasklemm](https://github.com/thomasklemm).
+* [#662](https://github.com/hashie/hashie/pull/662): Read and write Mash keys as methods without allocating an Array for the arguments on Ruby 4.0 - [@thomasklemm](https://github.com/thomasklemm).
 * Your contribution here.
 
 ### Deprecated
