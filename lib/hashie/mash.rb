@@ -642,12 +642,12 @@ module Hashie
 
     def _log_collision?(method_key)
       return false unless method_key.is_a?(String) || method_key.is_a?(Symbol)
+      return false if self.class.disable_warnings?(method_key)
       return false unless respond_to?(method_key)
 
       suffix = _method_suffix(method_key)
 
       (!suffix || suffix == '=') &&
-        !self.class.disable_warnings?(method_key) &&
         !(regular_key?(method_key) || regular_key?(method_key.to_s))
     end
   end
