@@ -56,7 +56,7 @@ module Hashie
       def disable_warnings?(method_key = nil)
         return disabled_warnings.include?(method_key) if disabled_warnings.any? && method_key
 
-        @disable_warnings ||= false
+        @disable_warnings || false
       end
 
       # Returns an array of methods that this class disables warnings for.
