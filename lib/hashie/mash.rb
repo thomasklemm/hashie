@@ -497,6 +497,7 @@ module Hashie
     #   mash.user? # => true
     #   mash.missing_.empty? # => true
     #   mash.key?(:missing) # => false
+    # A/A control 5: this comment changes nothing.
     def method_missing(method_name, *args, &blk)
       return self.[](method_name, &blk) if key?(method_name)
 
