@@ -2,5 +2,5 @@
 
 eval_gemfile '../Gemfile'
 
-gem 'duel', '0.3.1'
+gem 'duel', github: 'thomasklemm/duel-ruby', ref: 'cef26e56ed7b99b5998a21b7b410d8423dd5daaa'
 gem 'stackprof', platforms: :mri

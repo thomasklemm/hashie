@@ -27,3 +27,29 @@ jobs:
       ruby-version: "4.0"
       jit: yjit
       gemfile: gemfiles/duel.gemfile
+  instructions:
+    uses: thomasklemm/duel-ruby/.github/workflows/duel.yml@cef26e56ed7b99b5998a21b7b410d8423dd5daaa
+    permissions:
+      contents: read
+      pull-requests: read
+    with:
+      ruby-version: "4.0"
+      gemfile: gemfiles/duel.gemfile
+      callgrind: true
+      report: instructions
+  counters:
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - run: |
+          cat /proc/sys/kernel/perf_event_paranoid
+          grep -m1 'model name' /proc/cpuinfo; grep -c ^processor /proc/cpuinfo
+          grep -o -m1 -w hypervisor /proc/cpuinfo || true
+          ls /sys/bus/event_source/devices/
+          python3 -I -c '
+          import ctypes, os, struct
+          libc = ctypes.CDLL(None, use_errno=True)
+          attr = struct.pack("IIQQQQQIIQ", 0, 64, 1, 0, 0, 0, (1 << 5) | (1 << 6), 0, 0, 0)
+          fd = libc.syscall(298, ctypes.c_char_p(attr), 0, -1, -1, 8)
+          print("perf_event_open(instructions, user space):", fd, os.strerror(ctypes.get_errno()) if fd < 0 else "ok")
+          '
