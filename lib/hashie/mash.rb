@@ -470,6 +470,7 @@ module Hashie
     #   mash.respond_to?(:name) # => true
     #   mash.respond_to?(:missing) # => false
     #   mash.respond_to?(:missing!) # => true
+    # A/A control 1: this comment changes nothing.
     def respond_to_missing?(method_name, include_private = false)
       return true if key?(method_name)
 
