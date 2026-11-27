@@ -28,3 +28,13 @@ jobs:
       ruby-version: "4.0"
       jit: yjit
       gemfile: gemfiles/duel.gemfile
+  zjit:
+    uses: sferik/duel-ruby/.github/workflows/duel.yml@3c0c99d95dc2d5620f59e4bb298179422086adf7 # v0.3.1
+    permissions:
+      contents: read
+      pull-requests: read
+    with:
+      ruby-version: "4.0"
+      jit: zjit
+      report: zjit
+      gemfile: gemfiles/duel.gemfile
