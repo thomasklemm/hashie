@@ -19,6 +19,7 @@ Any violations of this scheme are considered to be bugs.
 ### Changed
 
 * [#656](https://github.com/hashie/hashie/pull/656): Write new Mash keys without allocating in respond_to_missing? - [@thomasklemm](https://github.com/thomasklemm).
+* [#664](https://github.com/hashie/hashie/pull/664): Read each value once in `Hashie::Hash#to_hash` - [@thomasklemm](https://github.com/thomasklemm).
 * Your contribution here.
 
 ### Deprecated
