@@ -537,7 +537,7 @@ module Hashie
     #   mash.dig(:user, :name) # => 'Ada'
     #   mash.dig(:missing, :name) # => nil
     def dig(*keys)
-      super(*keys.map { |key| convert_key(key) })
+      super(*keys.map! { |key| convert_key(key) })
     end
 
     # @example Transform values into a new Mash
