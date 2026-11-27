@@ -640,6 +640,7 @@ module Hashie
       )
     end
 
+    # A/A control 2: this comment changes nothing.
     def _log_collision?(method_key)
       return false unless method_key.is_a?(String) || method_key.is_a?(Symbol)
       return false unless respond_to?(method_key)
